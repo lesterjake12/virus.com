@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You Flood - Virus Theme</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        body {
+            overflow: hidden;
+            margin: 0;
+            font-family: 'VT323', monospace;
+            background: url('images/g3.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .love-message {
+            position: absolute;
+            color: limegreen;
+            font-size: 24px;
+            font-weight: bold;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+            }
+            100% {
+                transform: translateY(-100vh);
+            }
+        }
+        .love-image {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            animation: float 10s linear infinite;
+        }
+        .play-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: limegreen;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Player with autoplay and loop -->
+    <audio id="background-audio" loop>
+        <source src="images/PALAGI - TJxKZ  LIVE SESSIONS.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button class="play-button" onclick="playAudio()">Play Music</button>
+
+    <script>
+        const imageSources = [
+            "images/4b91080b-e56e-457b-a739-bc1e426b157e.jfif",
+            "images/8cb8b0e2-4e29-459f-8a58-cc5a0ec52de2.jfif", 
+            "images/0455f373-3871-4e74-9ab4-f6d46ba6086e.jfif",  
+            "images/822af3d8-e4f7-49ff-9955-39f4479ceda6.jfif", 
+            "images/f7e20860-7d2e-47e7-adf8-9a2c70888fae.jfif", 
+            "images/fd7b37be-9a7f-491c-8d50-df7c40f6ef2d.jfif", 
+            "images/a54b9834-c0cc-411b-840d-903b1664e92a.jfif", 
+            "images/f7e20860-7d2e-47e7-adf8-9a2c70888fae.jfif"
+        ];
+
+        function createLoveMessage() {
+            const loveMessage = document.createElement('div');
+            loveMessage.classList.add('love-message');
+            loveMessage.textContent = "I love you";
+            loveMessage.style.left = Math.random() * 100 + "vw";
+            loveMessage.style.top = Math.random() * 100 + "vh";
+            loveMessage.style.fontSize = (Math.random() * 20 + 20) + "px";
+            document.body.appendChild(loveMessage);
+            setTimeout(() => {
+                loveMessage.remove();
+            }, 5000);
+        }
+
+        function createLoveImage() {
+            const loveImage = document.createElement('img');
+            loveImage.classList.add('love-image');
+            const randomImage = imageSources[Math.floor(Math.random() * imageSources.length)];
+            loveImage.src = randomImage;
+            loveImage.style.left = Math.random() * 100 + "vw";
+            loveImage.style.top = Math.random() * 100 + "vh";
+            document.body.appendChild(loveImage);
+            setTimeout(() => {
+                loveImage.remove();
+            }, 10000);
+        }
+
+        setInterval(createLoveMessage, 100);
+        setInterval(createLoveImage, 500);
+
+        function playAudio() {
+            const audio = document.getElementById('background-audio');
+            audio.play().catch(error => {
+                console.log("Autoplay was prevented. Please interact with the page to enable audio.");
+            });
+        }
+    </script>
+</body>
+</html>
